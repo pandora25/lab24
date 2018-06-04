@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "ListItems";
+}
+<h2>Item List</h2>
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Origin</th>
+        <th>Order Number</th>
+    </tr>
+    @foreach (var item in ViewBag.Message)
+    {
+    <tr>
+        <th>@item.Name</th>
+        <th>@item.Quantity</th>
+        <th>@item.Origin</th>
+        <th>@item.OrderNumber</th>
+        <th>
+            <a href="/Home/DeleteItem?Name=@item.Name" onclick="return confirm('are you sure')" class="btn btn-danger btn-sm ">
+                <span class=" glyphicon glyphicon-trash"></span>Delete
+            </a>
+        </th>
+        <td><a href="/Home/UpdateItem?Items=@item.Name">Update</a></td>
+    </tr>
+    }
+    
+</table>
+<h1>Add Item</h1>
+<form action="/Home/AddItem" method="get">
+    Name:<input type="text" name="Name"/>
+    Price:<input type="number" name="Price"/>
+    Quantity:<input type="number" name="Quantity"/>
+    Origin:<input type="text" name="Origin"/>
+    Order Number:<input type="number" name="OrderNumber"/>
+    <input  type="submit" value="Submit"/>
+
+</form>

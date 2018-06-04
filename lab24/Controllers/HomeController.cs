@@ -13,93 +13,103 @@ namespace lab24.Controllers
         {
             return View();
         }
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
-
-        public ActionResult Registration()
-        {
-            return View();
-        }
-        
-        //create 
-        public ActionResult AddNewUser(User newUser)
-        {
-            AmazonesEntities1 ORM = new AmazonesEntities1();
-
-            User foundinDB = ORM.User.Find(newUser.LastName);
-
-            if (foundinDB != User)
-            {
-                ORM.User.Add(newUser);
-                ORM.SaveChanges();
-                ViewBag.Result = newUser.LastName;
-
-                return View("Result");
-            }
-
-            else if(foundinDB == User)
-            {
-               // ViewBag.Error = newUser.LastName;
-                return View("Error");
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
-
-        //Search
-        public ActionResult SearchUser()
-        {
-            return View("Result");
-        }
-
-        //delete
-        public ActionResult DeleteItem(string Name)
-        {
-            AmazonesEntities1 ORM = new AmazonesEntities1();
-
-            Item founded = ORM.Item.Find(Name);
-
-            if (founded != null)
-            {
-                ORM.Item.Remove(founded);
-                ORM.SaveChanges();
-                ViewBag.Message = founded.Name;
-                return RedirectToAction("DeletePage");
-            }
-            else
-            {
-                return View("Error");
-            }
-        }
-
         //read
         public ActionResult ShowUSerDEtails()
         {
 
             return View("Result");
         }
-
-        //update
-        public ActionResult UpdateUser()
+        //Search
+        public ActionResult SearchUser()
         {
-
             return View("Result");
         }
 
+        public ActionResult Registration()
+        {
+            return View();
+        }
+        //create user
+        public ActionResult AddNewUser(User newUser)
+        {
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+            User foundinDB = ORM.Users.Find(newUser.LastName);
+            if (foundinDB == null )
+            {
+                ORM.Users.Add(newUser);
+                ORM.SaveChanges();
+                ViewBag.Result =newUser.LastName;
+                return View("Result");
+            }
+            else
+            { 
+               ViewBag.Error = newUser.LastName;
+                return View("Error");
+            }
+        }
+        //adding items
+        public ActionResult AddItem(Item AddingItems)
+        {
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+
+            if (ModelState.IsValid)
+            {
+                ORM.Items.Add(AddingItems);
+                ORM.SaveChanges();
+                ViewBag.Result = ORM.Items.ToList();
+                ViewBag.Message = $"{AddingItems.Name} has been added";
+                return RedirectToAction("Swither");
+            }
+            return View();
+         
+        }
+        //pass the user to next Session
+        public ActionResult Swither()
+        {
+            return RedirectToAction("ListItems");
+        }
+  
+        public ActionResult ListItems(Item AllItems)
+        {
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+           List<Item> ItemsinfoundedinDB =  ORM.Items.ToList();
+            ViewBag.Message = ItemsinfoundedinDB;
+            return View();
+        }
+     
+        //delete
+        public ActionResult DeleteItem(string Name)
+        {
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+
+            Item founded = ORM.Items.Find(Name);
+
+                ORM.Items.Remove(founded);
+                ORM.SaveChanges();
+                return RedirectToAction("ListItems");
+        }
+ 
+        //update
+        public ActionResult UpdateItem()
+        {
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+
+            return View("ListItems");
+        }
+
+      
 
 
     }

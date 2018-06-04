@@ -12,7 +12,7 @@
   </EntityType>
   <EntityType Name="Users">
     <Key>
-      <PropertyRef Name="PhoneNumber" />
+      <PropertyRef Name="LastName" />
     </Key>
     <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />

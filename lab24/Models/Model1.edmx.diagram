@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="85651ba720f34462a6eab48199f5dcbf" Name="Diagram1">
-        <EntityTypeShape EntityType="AmazonesModel.Item" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AmazonesModel.User" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmazonesModel.Item" Width="1.5" PointX="1" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AmazonesModel.User" Width="1.5" PointX="5.125" PointY="2.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

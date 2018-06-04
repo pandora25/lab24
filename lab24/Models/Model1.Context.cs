@@ -25,7 +25,8 @@ namespace lab24.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Item> Item { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        
     }
 }

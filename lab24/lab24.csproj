@@ -244,6 +244,7 @@
     <Content Include="Views\Home\DeletePage.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\Home\UserExist.cshtml" />
+    <Content Include="Views\Home\ListItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
