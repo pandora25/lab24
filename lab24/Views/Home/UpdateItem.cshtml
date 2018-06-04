@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "UpdateItem";
+}
+
+<h2>Edit Page</h2>
+@model lab24.Models.Item
+
+<form action="/Home/SaveUpdatedItem" method="post">
+    Name:<input type="text" name="Name" value="@Model.Name" readonly /><br />
+    Price: <input type="text" name="Price" value="@Model.Price" /><br />
+    Quantity:<input type="text" name="Quantity" value="@Model.Quantity" /><br />
+    Origin:<input inputmode="text" name="Origin" value="@Model.Origin" />
+    OrderNumber:<input inputmode="text" name="OrderNumber" value="@Model.OrderNumber" />
+    <input type="submit" value="Save Updates" />
+</form>

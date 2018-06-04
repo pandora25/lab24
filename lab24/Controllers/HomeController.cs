@@ -100,17 +100,42 @@ namespace lab24.Controllers
                 ORM.SaveChanges();
                 return RedirectToAction("ListItems");
         }
- 
-        //update
-        public ActionResult UpdateItem()
+
+        public ActionResult UpdateItem(string UpdateItems)
         {
             AmazonesEntities1 ORM = new AmazonesEntities1();
 
-            return View("ListItems");
+            Item item = ORM.Items.Find(UpdateItems);
+
+            return View(item);
         }
+ 
+        //update
+        public ActionResult SaveUpdatedItem(Item UpdateItems)
+        {
+            //1.creat orm
+            AmazonesEntities1 ORM = new AmazonesEntities1();
+            //2.find the customer
+            Item oldItemRecord = ORM.Items.Find(UpdateItems.Name);
+            if (oldItemRecord != null && ModelState.IsValid)
+            {
+                //3.update the exiting customer
+                // oldCustomerRecord.CustomerID.Replace
+                //oldItemRecord.Name = UpdateItems.Name;
+                oldItemRecord.Price = UpdateItems.Price;
+                oldItemRecord.Quantity = UpdateItems.Quantity;
+                oldItemRecord.Origin = UpdateItems.Origin;
+                oldItemRecord.OrderNumber = UpdateItems.OrderNumber;
 
-      
-
-
+                ORM.Entry(oldItemRecord).State = System.Data.Entity.EntityState.Modified;
+                ORM.SaveChanges();
+                return RedirectToAction("ListItems");
+            }
+            else
+            {
+                ViewBag.ErrorMessage = "Oops! Something Went Wrong";
+                return View("Error");
+            }
+        }
     }
 }
